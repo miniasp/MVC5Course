@@ -11,27 +11,20 @@ namespace MVC5Course.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Product
     {
         public Product()
         {
             this.OrderLine = new HashSet<OrderLine>();
         }
-
+    
         public int ProductId { get; set; }
-        [Required]
-        [StringLength(100)]
         public string ProductName { get; set; }
-        [Required]
-        [Range(1.0, 999.9)]
-        [DisplayFormat(DataFormatString="{0:C}")]    
         public Nullable<decimal> Price { get; set; }
         public Nullable<bool> Active { get; set; }
-        [Required]
         public Nullable<decimal> Stock { get; set; }
-
+    
         public virtual ICollection<OrderLine> OrderLine { get; set; }
     }
 }

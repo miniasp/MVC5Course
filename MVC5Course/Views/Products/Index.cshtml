@@ -9,6 +9,15 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<p class="text-right">
+    @using (Html.BeginForm())
+    {
+        <input type="search" name="search" value="" accesskey="s" placeholder="請輸入關鍵字(Alt + s)" />
+        @*@Html.TextBox("search")*@
+        <input type="submit" value="搜尋" />
+    }
+</p>
+<br />
 <table class="table">
     <tr>
         <th>
@@ -55,7 +64,7 @@
 
     <tr>
         <td></td>
-        <td><a class="btn btn-default" href="@Url.Action("BatchUpdate")" >更新價格為5元</a></td>
+        <td><a class="btn btn-default" href="@Url.Action("BatchUpdate")">更新價格為5元</a></td>
         <td></td>
     </tr>
 </table>
