@@ -16,6 +16,11 @@ namespace MVC5Course.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            return View();
+        }
+
+        public ActionResult test()
+        {
 
             return View();
         }
@@ -26,5 +31,7 @@ namespace MVC5Course.Controllers
 
             return View();
         }
+       
+      
     }
 }
