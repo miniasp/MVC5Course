@@ -5,8 +5,10 @@ namespace MVC5Course.Models
     using System.ComponentModel.DataAnnotations;
     
     [MetadataType(typeof(OrderMetaData))]
-    public partial class Order:IValidatableObject
+    public partial class Order
     {
+        
+        //:IValidatableObject
         //public IEnumerable<ValidationResult> Validate(ValidationResult valid)
         //{
         //    using (var db = new FabricsEntities()){

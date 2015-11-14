@@ -5,17 +5,17 @@ namespace MVC5Course.Models
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(ProductMetaData))]
-    public partial class Product : IValidatableObject
+    public partial class Product
     {
-      
-        #region IValidatableObject 成員
+       //: IValidatableObject
+       // #region IValidatableObject 成員
 
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            throw new NotImplementedException();
-        }
+       // IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+       // {
+       //     throw new NotImplementedException();
+       // }
 
-        #endregion
+       // #endregion
     }
     
       

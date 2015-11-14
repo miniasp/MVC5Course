@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -31,7 +31,13 @@ namespace MVC5Course.Controllers
 
             return View();
         }
-       
-      
+
+        //[ActionName("cart.aspx")]
+        public ActionResult Cart(string id)
+        {
+            return View("index");
+        }
+
+
     }
 }
