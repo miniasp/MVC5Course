@@ -31,7 +31,7 @@ namespace MVC5Course.Controllers
                 data = db.Product;
             }
 
-            return View(data);
+            return View(data.ToList());
         }
 
         // GET: Products/Details/5
