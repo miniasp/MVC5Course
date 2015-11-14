@@ -290,6 +290,7 @@
       <DependentUpon>Fabrics.mdf</DependentUpon>
     </Content>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Content\344774.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -381,6 +382,7 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\NewProduct.cshtml" />
     <Content Include="Views\Shared\Debug.cshtml" />
+    <Content Include="Views\test\testPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
