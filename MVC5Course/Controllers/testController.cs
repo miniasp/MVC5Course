@@ -40,7 +40,34 @@ namespace MVC5Course.Controllers
         {
             string filePath = Server.MapPath(@"~/Content/344774.jpg");
             string contentType = "image/jepg";
-            return File(filePath, contentType,"我自定的檔名.jpg");
+            return File(filePath, contentType, "我自定的檔名.jpg");
+        }
+
+        public ActionResult JsonIndex()
+        {
+            return View();
+        }
+
+        public ActionResult JsonData()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            var data = db.Product.Take(5).ToList();
+
+            return Json(data);
+
+            //return Json(new
+            //{
+            //    id = 1,
+            //    name = "hello",
+            //    test = "lock"
+
+            //});
+        }
+
+
+        public ActionResult RedirecToIndex()
+        {
+            return RedirectPermanent("Index");
         }
 
     }

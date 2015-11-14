@@ -185,6 +185,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\testController.cs" />
     <Compile Include="Global.asax.cs">
@@ -383,6 +384,9 @@
     <Content Include="Views\Products\NewProduct.cshtml" />
     <Content Include="Views\Shared\Debug.cshtml" />
     <Content Include="Views\test\testPartial.cshtml" />
+    <Content Include="Views\test\JsonData.cshtml" />
+    <Content Include="Views\MB\Index.cshtml" />
+    <Content Include="Views\MB\FormBinding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

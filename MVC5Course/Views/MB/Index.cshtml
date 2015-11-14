@@ -1,0 +1,60 @@
+﻿@model MVC5Course.Models.NewProductVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @ViewData["MyName"]
+    @ViewBag.MyTitle
+</div>
+
+<div>
+    <h4>NewProductVM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<table class="table">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>active</td>
+        <td>price</td>
+        <td>stock</td>
+    </tr>
+    @foreach (MVC5Course.Models.Product item in ViewBag.Products)
+    {
+        <tr>
+            <td>@item.ProductId</td>
+            <td>@item.ProductName</td>
+            <td>@item.Active</td>
+            <td>@item.Price</td>
+            <td>@item.Stock</td>
+
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
