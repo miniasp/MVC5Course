@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
 using Omu.ValueInjecter;
+using System.Web.UI;
 
 namespace MVC5Course.Controllers
 {
@@ -17,6 +18,8 @@ namespace MVC5Course.Controllers
 
         ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products
+
+        [OutputCache(Location = OutputCacheLocation.Server, Duration = 60)]
         public ActionResult Index(string search)
         {
             var data = repo.Get取得前面10筆範例資料();
@@ -64,12 +67,17 @@ namespace MVC5Course.Controllers
         //    return RedirectToAction("Index");
         //}
 
+
+
+
+
+        [HttpPost]
         //驗遲驗證
         public ActionResult Index(int[] ProductId, FormCollection form)
         {
-            IList<Product> data = new List<Product>();
+            IList<NewProductVM> data = new List<NewProductVM>();
 
-            if (TryUpdateModel<IList<Product>>(data, prefix: "data"))
+            if (TryUpdateModel<IList<NewProductVM>>(data, prefix: "data"))
             {
                 //進行多資料表單更新
                 if (data != null)
@@ -84,20 +92,22 @@ namespace MVC5Course.Controllers
                     }
 
                 }
-            }
 
-            //進行表單刪除
-            if (ProductId != null)
-            {
-                foreach (int id in ProductId)
+
+                //進行表單刪除
+                if (ProductId != null)
                 {
-                    repo.Delete(repo.GetByID(id));
+                    foreach (int id in ProductId)
+                    {
+                        repo.Delete(repo.GetByID(id));
+                    }
+
                 }
-
+                repo.UnitOfWork.Commit();
+                return RedirectToAction("Index");
             }
-            repo.UnitOfWork.Commit();
 
-            return RedirectToAction("Index");
+            return View(repo.Get取得前面10筆範例資料());
         }
 
         // GET: Products/Details/5

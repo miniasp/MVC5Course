@@ -9,6 +9,8 @@ namespace MVC5Course.Models
     public class NewProductVM
     {
         [Required]
+        public int ProductId { get; set; }
+        [Required]
         [StringLength(100)]
         public string ProductName { get; set; }
         [Required]
