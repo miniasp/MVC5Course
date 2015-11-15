@@ -42,7 +42,7 @@ namespace MVC5Course.Models
 
         public IQueryable Get取得前面N筆範例資料(int N)
         {
-            return this.All().Where(p => p.ProductId < N);
+            return this.All().OrderBy(p => p.ProductId).Take(N);
         }
 
 

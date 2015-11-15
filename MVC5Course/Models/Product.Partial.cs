@@ -27,7 +27,7 @@ namespace MVC5Course.Models
         [Required]
         public int ProductId { get; set; }
         [Required]
-        [限制欄位必預出現數字2個1(ErrorMessage="xxxx")]
+        //[限制欄位必預出現數字2個1(ErrorMessage="不爽啦啦")]
         [StringLength(80, ErrorMessage = "欄位長度不得大於 80 個字元")]
         public string ProductName { get; set; }
         public Nullable<decimal> Price { get; set; }

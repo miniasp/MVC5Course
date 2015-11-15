@@ -14,7 +14,7 @@ namespace MVC5Course.Controllers
 {
     public class ProductsController : BaseController
     {
-       
+
         ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products
         public ActionResult Index(string search)
@@ -27,6 +27,77 @@ namespace MVC5Course.Controllers
             }
 
             return View(data);
+        }
+
+        //預先驗證
+        //[HttpPost]
+        //public ActionResult Index(int[] ProductId, IList<Product> data)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        //進行多資料表單更新
+        //        if (data != null)
+        //        {
+        //            foreach (var item in data)
+        //            {
+        //                //依ID取得資料，並利用InjectForm來逐一更新
+        //                var dbItem = repo.GetByID(item.ProductId);
+        //                dbItem.InjectFrom(item);
+
+        //                //若不利用injectFrom，那必需一個個欄位對應，很累
+        //            }
+
+        //        }
+        //    }
+
+        //    //進行表單刪除
+        //    if (ProductId != null)
+        //    {
+        //        foreach (int id in ProductId)
+        //        {
+        //            repo.Delete(repo.GetByID(id));
+        //        }
+
+        //    }
+        //    repo.UnitOfWork.Commit();
+
+        //    return RedirectToAction("Index");
+        //}
+
+        //驗遲驗證
+        public ActionResult Index(int[] ProductId, FormCollection form)
+        {
+            IList<Product> data = new List<Product>();
+
+            if (TryUpdateModel<IList<Product>>(data, prefix: "data"))
+            {
+                //進行多資料表單更新
+                if (data != null)
+                {
+                    foreach (var item in data)
+                    {
+                        //依ID取得資料，並利用InjectForm來逐一更新
+                        var dbItem = repo.GetByID(item.ProductId);
+                        dbItem.InjectFrom(item);
+
+                        //若不利用injectFrom，那必需一個個欄位對應，很累
+                    }
+
+                }
+            }
+
+            //進行表單刪除
+            if (ProductId != null)
+            {
+                foreach (int id in ProductId)
+                {
+                    repo.Delete(repo.GetByID(id));
+                }
+
+            }
+            repo.UnitOfWork.Commit();
+
+            return RedirectToAction("Index");
         }
 
         // GET: Products/Details/5
@@ -88,21 +159,18 @@ namespace MVC5Course.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
+        public ActionResult Edit(int? id, FormCollection form)
         {
-            if (ModelState.IsValid)
+            var product = repo.GetByID(id);
+            string[] includeProperties = "roductId,ProductName,Price,Stock".Split(',');
+            if (TryUpdateModel<Product>(product, includeProperties))
             {
-
-                // db.Entry(product).State = EntityState.Modified;
-                ((FabricsEntities)repo.UnitOfWork.Context).Entry(product).State = EntityState.Modified;
-
-
-
                 repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
             return View(product);
         }
+
 
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
@@ -240,7 +308,7 @@ namespace MVC5Course.Controllers
             return RedirectToAction("Index");
         }
 
-     
+
 
     }
 }
