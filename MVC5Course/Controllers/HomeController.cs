@@ -16,6 +16,8 @@ namespace MVC5Course.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            ViewBag.isActive = false;
+
             return View();
         }
 

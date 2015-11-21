@@ -70,13 +70,12 @@ namespace MVC5Course.Controllers
 
 
 
-
+        [HandleError(ExceptionType = typeof(DbEntityValidationException), View = "Error_DbEntityValidationException")]
         [HttpPost]
         //驗遲驗證
         public ActionResult Index(int[] ProductId, FormCollection form)
         {
             IList<NewProductVM> data = new List<NewProductVM>();
-
             if (TryUpdateModel<IList<NewProductVM>>(data, prefix: "data"))
             {
                 //進行多資料表單更新
@@ -125,6 +124,14 @@ namespace MVC5Course.Controllers
             }
             return View(product);
         }
+
+        [ChildActionOnly]
+        public ActionResult OrderLines(int id)
+        {
+            return View(repo.GetByID(id).OrderLine);
+        }
+
+
 
         // GET: Products/Create
         public ActionResult Create()

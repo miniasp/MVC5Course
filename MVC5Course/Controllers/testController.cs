@@ -7,7 +7,7 @@ using MVC5Course.ActionFillters;
 
 namespace MVC5Course.Controllers
 {
-        [全站共用viewBag的titleAttribute]
+    [全站共用viewBag的titleAttribute]
     public class testController : BaseController
     {
         // GET: test
@@ -72,5 +72,12 @@ namespace MVC5Course.Controllers
             return RedirectPermanent("Index");
         }
 
+
+        public ActionResult testRazor(bool enable=true)
+        {
+            ViewBag.IsEnbled = enable;
+            int[] data = new int[] { 1, 2, 3, 4, 5 };
+            return View(data);
+        }
     }
 }

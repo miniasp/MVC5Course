@@ -1,7 +1,13 @@
 ﻿@{
     ViewBag.Title = "About";
+    var tt =  User.Identity.Name;
+    var controllerName = ViewContext.RouteData.Values["controller"];
+    
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>馬上改，坐好坐滿</p>
+
+@UtilityHelper.showP()
+
+@UtilityHelper.get回傳是否啟用(ViewBag.isActive)

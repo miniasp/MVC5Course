@@ -326,6 +326,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IRepository.cs</LastGenOutput>
     </Content>
+    <Content Include="App_Code\UtilityHelper.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -390,6 +391,11 @@
     <Content Include="Views\MB\FormBinding.cshtml" />
     <Content Include="Views\MB\MulitBinding.cshtml" />
     <Content Include="Views\MB\Form2Binding.cshtml" />
+    <Content Include="Views\Shared\Error_DbEntityValidationException.cshtml" />
+    <Content Include="Views\test\testRazor.cshtml" />
+    <Content Include="Views\test\_ViewStart.cshtml" />
+    <Content Include="Views\test\_Layout.cshtml" />
+    <Content Include="Views\Products\OrderLines.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
