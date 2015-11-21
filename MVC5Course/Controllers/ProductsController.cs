@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using System.Data.Entity.Validation;
 using Omu.ValueInjecter;
 using System.Web.UI;
 
@@ -15,96 +15,123 @@ namespace MVC5Course.Controllers
 {
     public class ProductsController : BaseController
     {
-
         ProductRepository repo = RepositoryHelper.GetProductRepository();
-        // GET: Products
 
-        [OutputCache(Location = OutputCacheLocation.Server, Duration = 60)]
-        public ActionResult Index(string search)
+        public ActionResult BatchUpdate()
         {
+            //db.Database.ExecuteSqlCommand("UPDATE dbo.Product SET Price=5 WHERE ProductId < @p0", 10);
+
             var data = repo.Get取得前面10筆範例資料();
+
+            foreach (var item in data)
+            {
+                item.Price = 5;
+            }
+
+            try
+            {
+                repo.UnitOfWork.Commit();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                //var allErrors = new List<string>();
+
+                //foreach (DbEntityValidationResult re in ex.EntityValidationErrors)
+                //{
+                //    foreach (DbValidationError err in re.ValidationErrors)
+                //    {
+                //        allErrors.Add(err.ErrorMessage);
+                //    }
+                //}
+
+                //ViewBag.Errors = allErrors;
+                throw ex;
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        //[OutputCache(Location=OutputCacheLocation.Server, Duration=60)]
+        // GET: Products
+        public ActionResult Index(string search, string ProductName, bool? active = true)
+        {
+            ViewBag.IsActive = active;
+
+
+            var pList = from p in repo.All(true)
+                        group p by p.ProductName into g
+                        select g.Key;
+
+            ViewBag.ProductName = new SelectList(pList);
+
+            //var pList = repo.All();
+            //ViewBag.ProductName = new SelectList(pList, "ProductId", "ProductName");
+
+
+            // var data = db.Product.Where(p => p.ProductId < 10).AsQueryable();
+            // var data = repo.All().Where(p => p.ProductId < 10);
+            //var data = repo.All(true); 
+            var data = repo.Get取得前面10筆範例資料(active);
 
             if (!String.IsNullOrEmpty(search))
             {
-                data = repo.Get取得依搜尋條件名字的資料(search);
+                data = data.Where(p => p.ProductName.Contains(search));
             }
+
+            //if (!String.IsNullOrEmpty(ProductName))
+            //{
+            //    data = data.Where(p => p.ProductName == ProductName);
+            //}
+
+            //var data1 = from p in db.Product
+            //            where p.ProductName.Contains("100")
+            //            orderby p.ProductName
+            //            select p;
+
+            //var data2 = from p in db.Product
+            //            where p.ProductName.Contains("100")
+            //            orderby p.ProductName
+            //            select new NewProductVM
+            //            {
+            //                ProductName = p.ProductName,
+            //                Price = p.Price
+            //            };
 
             return View(data);
         }
 
-        //預先驗證
-        //[HttpPost]
-        //public ActionResult Index(int[] ProductId, IList<Product> data)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        //進行多資料表單更新
-        //        if (data != null)
-        //        {
-        //            foreach (var item in data)
-        //            {
-        //                //依ID取得資料，並利用InjectForm來逐一更新
-        //                var dbItem = repo.GetByID(item.ProductId);
-        //                dbItem.InjectFrom(item);
-
-        //                //若不利用injectFrom，那必需一個個欄位對應，很累
-        //            }
-
-        //        }
-        //    }
-
-        //    //進行表單刪除
-        //    if (ProductId != null)
-        //    {
-        //        foreach (int id in ProductId)
-        //        {
-        //            repo.Delete(repo.GetByID(id));
-        //        }
-
-        //    }
-        //    repo.UnitOfWork.Commit();
-
-        //    return RedirectToAction("Index");
-        //}
-
-
-
-
-        [HandleError(ExceptionType = typeof(DbEntityValidationException), View = "Error_DbEntityValidationException")]
+        [HandleError(
+            ExceptionType = typeof(DbEntityValidationException),
+            View = "Error_DbEntityValidationException")
+        ]
         [HttpPost]
-        //驗遲驗證
         public ActionResult Index(int[] ProductId, FormCollection form)
         {
             IList<NewProductVM> data = new List<NewProductVM>();
-            if (TryUpdateModel<IList<NewProductVM>>(data, prefix: "data"))
+
+            TryUpdateModel<IList<NewProductVM>>(data, "data");
+
+            foreach (var item in data)
             {
-                //進行多資料表單更新
-                if (data != null)
-                {
-                    foreach (var item in data)
-                    {
-                        //依ID取得資料，並利用InjectForm來逐一更新
-                        var dbItem = repo.GetByID(item.ProductId);
-                        dbItem.InjectFrom(item);
+                var dbItem = repo.GetByID(item.ProductId);
 
-                        //若不利用injectFrom，那必需一個個欄位對應，很累
-                    }
-
-                }
-
-
-                //進行表單刪除
-                if (ProductId != null)
-                {
-                    foreach (int id in ProductId)
-                    {
-                        repo.Delete(repo.GetByID(id));
-                    }
-
-                }
-                repo.UnitOfWork.Commit();
-                return RedirectToAction("Index");
+                dbItem.InjectFrom(item);
             }
+
+            if (ProductId != null)
+            {
+                foreach (var id in ProductId)
+                {
+                    repo.Delete(repo.GetByID(id));
+                }
+            }
+
+            repo.UnitOfWork.Commit();
+
+            return RedirectToAction("Index");
+
+            //ModelState.AddModelError("data[0].Price", "ERROR");
+            //ModelState.Clear();
 
             return View(repo.Get取得前面10筆範例資料());
         }
@@ -116,7 +143,12 @@ namespace MVC5Course.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = repo.GetByID(id);
+            //Product product = db.Product.Find(id);
+            //Product product = db.Product.Where(p => p.ProductId == id && p.Active == true).FirstOrDefault();
+            //Product product = db.Product.FirstOrDefault(p => p.ProductId == id && p.Active == true);
+
+
+            var product = repo.GetByID(id);
 
             if (product == null)
             {
@@ -128,10 +160,9 @@ namespace MVC5Course.Controllers
         [ChildActionOnly]
         public ActionResult OrderLines(int id)
         {
+
             return View(repo.GetByID(id).OrderLine);
         }
-
-
 
         // GET: Products/Create
         public ActionResult Create()
@@ -161,12 +192,15 @@ namespace MVC5Course.Controllers
         {
             if (id == null)
             {
+                throw new ArgumentException("Not id input");
+
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product product = repo.GetByID(id);
             if (product == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable);
+                //return HttpNotFound();
             }
             return View(product);
         }
@@ -176,10 +210,12 @@ namespace MVC5Course.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[ValidateInput(false)]
         public ActionResult Edit(int? id, FormCollection form)
+        // [Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product
         {
             var product = repo.GetByID(id);
-            string[] includeProperties = "roductId,ProductName,Price,Stock".Split(',');
+            var includeProperties = "ProductId,ProductName,Price,Stock".Split(',');
             if (TryUpdateModel<Product>(product, includeProperties))
             {
                 repo.UnitOfWork.Commit();
@@ -187,7 +223,6 @@ namespace MVC5Course.Controllers
             }
             return View(product);
         }
-
 
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
@@ -210,21 +245,11 @@ namespace MVC5Course.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = repo.GetByID(id);
-            //var orderLines = db.OrderLine.Where(p => p.ProductId == product.ProductId);
-            //var orderLines1 = product.OrderLine.ToList();
-            //foreach(var item in orderLines1){
-            //    db.OrderLine.Remove(item);
-            //}
-            // db.OrderLine.RemoveRange(product.OrderLine);
-            // db.Product.Remove(product);
-
-            //db.OrderLine.RemoveRange(product.OrderLine);
-
 
             repo.Delete(product);
 
-
             repo.UnitOfWork.Commit();
+
             return RedirectToAction("Index");
         }
 
@@ -237,6 +262,24 @@ namespace MVC5Course.Controllers
             base.Dispose(disposing);
         }
 
+        public string TestInsert()
+        {
+            var db = new FabricsEntities();
+
+            var product = new Product()
+            {
+                ProductName = "Entity",
+                Price = 99,
+                Stock = 10,
+                Active = true
+            };
+
+            db.Product.Add(product);
+
+            repo.UnitOfWork.Commit();
+
+            return "OK: " + product.ProductId;
+        }
 
         public ActionResult NewProduct()
         {
@@ -244,26 +287,24 @@ namespace MVC5Course.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewProduct(NewProductVM newProduct)
+        public ActionResult NewProduct(NewProductVM product)
         {
-            //這裡會驗證NewProductVM
             if (ModelState.IsValid)
             {
+                var prod = Mapper.Map<Product>(product);
 
-                var prod = Mapper.Map<Product>(newProduct);
-
-                prod.Stock = 1;
-                prod.Active = true;
+                //var prod = new Product();
+                //prod.ProductName = product.ProductName;
+                //prod.Price = product.Price;
 
                 repo.Add(prod);
 
                 try
                 {
-                    repo.UnitOfWork.Commit();//這裡會驗證Product
+                    repo.UnitOfWork.Commit();
                 }
                 catch (DbEntityValidationException ex)
                 {
-                    //throw ex;
                     var allErrors = new List<string>();
 
                     foreach (DbEntityValidationResult re in ex.EntityValidationErrors)
@@ -274,58 +315,15 @@ namespace MVC5Course.Controllers
                         }
                     }
 
-                    ViewBag.Errors = allErrors;
+                    return Content(String.Join("<br>", allErrors.ToArray()));
+                    //throw ex;
                 }
-
 
                 return RedirectToAction("Index");
             }
 
-            //驗證NewProductVM
-            //驗證Product
-            //假設兩者驗證不一，一定要加try catch
-            //不然很難找原因為何
-            //model 會套用驗證屬性，entity framework 也會看model中的驗證屬性
-            //這裡使用value Injecter 使資料直接注射進入
-            return View(newProduct);
+            return View(product);
         }
-
-        /// <summary>
-        /// 實做列表中批次改變價錢行為
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult BatchUpdate()
-        {
-            var data = repo.Get取得前面10筆範例資料();
-
-            foreach (var g in data)
-            {
-                ((Product)g).Price = 7;
-            }
-
-            try
-            {
-                repo.UnitOfWork.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                //throw ex;
-                var allErrors = new List<string>();
-
-                foreach (DbEntityValidationResult re in ex.EntityValidationErrors)
-                {
-                    foreach (DbValidationError err in re.ValidationErrors)
-                    {
-                        allErrors.Add(err.ErrorMessage);
-                    }
-                }
-
-                ViewBag.Errors = allErrors;
-            }
-            return RedirectToAction("Index");
-        }
-
-
 
     }
 }

@@ -175,7 +175,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFillters\MyFillterAttribute.cs" />
+    <Compile Include="ActionFilters\MyFilterAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -183,18 +183,20 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ARController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MBController.cs" />
+    <Compile Include="Controllers\OrderLinesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\testController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs">
-      <DependentUpon>fabrics.tt</DependentUpon>
+      <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
@@ -213,20 +215,20 @@
     <Compile Include="Models\EFUnitOfWork.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\fabrics.Context.cs">
+    <Compile Include="Models\Fabrics.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>fabrics.Context.tt</DependentUpon>
+      <DependentUpon>Fabrics.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\fabrics.cs">
+    <Compile Include="Models\Fabrics.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>fabrics.tt</DependentUpon>
+      <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\fabrics.Designer.cs">
+    <Compile Include="Models\Fabrics.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>fabrics.edmx</DependentUpon>
+      <DependentUpon>Fabrics.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IRepository.cs">
@@ -240,7 +242,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NewProductVM.cs" />
     <Compile Include="Models\Occupation.cs">
-      <DependentUpon>fabrics.tt</DependentUpon>
+      <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Occupation.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
@@ -249,13 +251,13 @@
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>fabrics.tt</DependentUpon>
+      <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderLine.cs">
-      <DependentUpon>fabrics.tt</DependentUpon>
+      <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderLine.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
@@ -267,7 +269,7 @@
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>fabrics.tt</DependentUpon>
+      <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
@@ -281,7 +283,7 @@
     <Compile Include="Models\RepositoryIQueryableExtensions.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\限制欄位必預出現數字2個1Attribute.cs" />
+    <Compile Include="Models\限制欄位值必須出現兩個數字1Attribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -292,41 +294,41 @@
       <DependentUpon>Fabrics.mdf</DependentUpon>
     </Content>
     <Content Include="App_Readme\Elmah.txt" />
-    <Content Include="Content\344774.jpg" />
+    <Content Include="Content\344773.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Project_Readme.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\fabrics.edmx">
+    <Content Include="Models\IRepository.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IRepository.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Fabrics.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>fabrics.Designer.cs</LastGenOutput>
+      <LastGenOutput>Fabrics.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\fabrics.Context.tt">
+    <Content Include="Models\Fabrics.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>fabrics.edmx</DependentUpon>
-      <LastGenOutput>fabrics.Context.cs</LastGenOutput>
+      <DependentUpon>Fabrics.edmx</DependentUpon>
+      <LastGenOutput>Fabrics.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\fabrics.edmx.diagram">
-      <DependentUpon>fabrics.edmx</DependentUpon>
+    <Content Include="Models\Fabrics.edmx.diagram">
+      <DependentUpon>Fabrics.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\fabrics.tt">
+    <Content Include="Models\Fabrics.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>fabrics.edmx</DependentUpon>
-      <LastGenOutput>fabrics.cs</LastGenOutput>
+      <DependentUpon>Fabrics.edmx</DependentUpon>
+      <LastGenOutput>Fabrics.cs</LastGenOutput>
     </Content>
     <Content Include="Models\EFGeneratePartialClass.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EFGeneratePartialClass.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\IRepository.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IRepository.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_Code\UtilityHelper.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -338,7 +340,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -348,15 +350,18 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\Utility.cshtml" />
+    <Content Include="Content\test.xlsx" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -368,47 +373,50 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\AR\Index.cshtml" />
+    <Content Include="Views\AR\JsonIndex.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Home\ViewHelper.cshtml" />
+    <Content Include="Views\Home\ViewTest.cshtml" />
+    <Content Include="Views\Home\_Layout.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\test.cshtml" />
-    <Content Include="Views\test\Index.cshtml" />
+    <Content Include="Views\MB\FormBinding.cshtml" />
+    <Content Include="Views\MB\Index.cshtml" />
+    <Content Include="Views\MB\MultiBinding.cshtml" />
+    <Content Include="Views\OrderLines\Create.cshtml" />
+    <Content Include="Views\OrderLines\Delete.cshtml" />
+    <Content Include="Views\OrderLines\Details.cshtml" />
+    <Content Include="Views\OrderLines\Edit.cshtml" />
+    <Content Include="Views\OrderLines\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\NewProduct.cshtml" />
-    <Content Include="Views\Shared\Debug.cshtml" />
-    <Content Include="Views\test\testPartial.cshtml" />
-    <Content Include="Views\test\JsonData.cshtml" />
-    <Content Include="Views\MB\Index.cshtml" />
-    <Content Include="Views\MB\FormBinding.cshtml" />
-    <Content Include="Views\MB\MulitBinding.cshtml" />
-    <Content Include="Views\MB\Form2Binding.cshtml" />
-    <Content Include="Views\Shared\Error_DbEntityValidationException.cshtml" />
-    <Content Include="Views\test\testRazor.cshtml" />
-    <Content Include="Views\test\_ViewStart.cshtml" />
-    <Content Include="Views\test\_Layout.cshtml" />
     <Content Include="Views\Products\OrderLines.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Base\" />
+    <Content Include="Views\Shared\Debug.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Product.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Product.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Error_DbEntityValidationException.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -61,7 +61,6 @@ namespace MVC5Course.Controllers
             return View();
         }
 
-        
         //
         // POST: /Account/Login
         [HttpPost]

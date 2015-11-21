@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC5Course.ActionFilters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,13 +17,8 @@ namespace MVC5Course.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-            ViewBag.isActive = false;
 
-            return View();
-        }
-
-        public ActionResult test()
-        {
+            ViewBag.IsEnabled = true;
 
             return View();
         }
@@ -34,12 +30,28 @@ namespace MVC5Course.Controllers
             return View();
         }
 
-        //[ActionName("cart.aspx")]
-        public ActionResult Cart(string id)
+        [在多個控制器中共用的ViewBag屬性]
+        public ActionResult Test()
         {
-            return View("index");
+            System.Diagnostics.Debug.WriteLine("Test Action");
+
+            throw new Exception("BAD");
+
+            return View();
         }
 
+        public ActionResult ViewTest(bool enable = true)
+        {
+            ViewBag.IsEnabled = enable;
 
+            int[] data = new int[] { 1, 2, 3, 4, 5 };
+
+            return View(data);
+        }
+
+        public ActionResult ViewHelper()
+        {
+            return View();
+        }
     }
 }

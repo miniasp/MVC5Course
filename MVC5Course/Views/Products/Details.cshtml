@@ -6,48 +6,21 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
+@Html.DisplayForModel();
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
+<hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+@*@Html.Partial("OrderLines", Model.OrderLine)*@
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+@*@Html.Action("OrderLines", new { Model.ProductId })*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
-
-    </dl>
-</div>
-
-@Html.Action("OrderLines", "Products", Model.ProductId)
+@Html.Action("Index", "OrderLines", new { productId = Model.ProductId })
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+

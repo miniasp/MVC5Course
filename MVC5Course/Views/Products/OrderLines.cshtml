@@ -1,0 +1,22 @@
+﻿@model IEnumerable<OrderLine>
+@{
+    Layout = null;
+}
+<h2>OrderLines</h2>
+
+<table class="table">
+    <tr>
+        <th>Qty</th>
+        <th>LineNumber</th>
+        <th>LineTotal</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Qty</td>
+            <td>@item.LineNumber</td>
+            <td>@item.LineTotal</td>
+        </tr>
+
+    }
+</table>

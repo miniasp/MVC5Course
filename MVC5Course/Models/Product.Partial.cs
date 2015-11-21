@@ -1,39 +1,37 @@
+
 namespace MVC5Course.Models
 {
-    using System;
+
+using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    [MetadataType(typeof(ProductMetaData))]
-    public partial class Product
-    {
-       //: IValidatableObject
-       // #region IValidatableObject 成員
+[MetadataType(typeof(ProductMetaData))]
+public partial class Product
+{
+}
 
-       // IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-       // {
-       //     throw new NotImplementedException();
-       // }
+public partial class ProductMetaData
+{
 
-       // #endregion
-    }
+    [Required]
+
+    public int ProductId { get; set; }
     
-      
+    [StringLength(80, ErrorMessage="欄位長度不得大於 80 個字元")]
+
+    public string ProductName { get; set; }
+
+    public Nullable<decimal> Price { get; set; }
+
+    public Nullable<bool> Active { get; set; }
+
+    public Nullable<decimal> Stock { get; set; }
 
 
 
-    public partial class ProductMetaData
-    {
-        [Required]
-        public int ProductId { get; set; }
-        [Required]
-        //[限制欄位必預出現數字2個1(ErrorMessage="不爽啦啦")]
-        [StringLength(80, ErrorMessage = "欄位長度不得大於 80 個字元")]
-        public string ProductName { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public Nullable<bool> Active { get; set; }
-        public Nullable<decimal> Stock { get; set; }
+    public virtual ICollection<OrderLine> OrderLine { get; set; }
 
-        public virtual ICollection<OrderLine> OrderLine { get; set; }
-    }
+}
+
 }

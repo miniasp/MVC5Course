@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "JsonIndex";
+}
+
+<h2>JsonIndex</h2>
+
+<button onclick="GetData()">取得資料</button>
+
+<table class="table" ng-controller="MainCtrl">
+    <tr>
+        <td>ProductId</td>
+        <td>商品名稱</td>
+        <td>商品價格</td>
+    </tr>
+    <tr ng-repeat="item in data">
+        <td>{{item.ProductId}}</td>
+        <td>{{item.ProductName}}</td>
+        <td>{{item.Price}}</td>
+    </tr>
+</table>
+
+<script>
+    function MainCtrl($scope) {
+        window.GetData = function () {
+            $.post('/AR/JsonData', "", function (data) {
+                console.log(data);
+                $scope.data = data;
+                $scope.$apply();
+            });
+        }
+    }
+</script>

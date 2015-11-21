@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MVC5Course.Models
 {
     public class NewProductVM
     {
-        [Required]
         public int ProductId { get; set; }
+
         [Required]
-        [StringLength(100)]
+        [StringLength(80)]
         public string ProductName { get; set; }
+
         [Required]
-        [Range(0.0, 999.9)]
+        [Range(1, 9999)]
         public Nullable<decimal> Price { get; set; }
     }
 }

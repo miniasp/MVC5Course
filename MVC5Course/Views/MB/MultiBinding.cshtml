@@ -1,24 +1,24 @@
 ﻿@model MVC5Course.Models.Product
 
 @{
-    ViewBag.Title = "MulitBinding";
+    ViewBag.Title = "MultiBinding";
+}
+
+<h2>MultiBinding</h2>
+
+@{
     var data1 = new MVC5Course.Models.Product();
     var data2 = new MVC5Course.Models.Product();
 }
 
-<h2>MulitBinding</h2>
-
-
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>Product</h4>
+        <h4>Product 1</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => data1.ProductId)
-
         <div class="form-group">
             @Html.LabelFor(model => data1.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -53,19 +53,13 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
     </div>
 
+
     <div class="form-horizontal">
-        <h4>Product</h4>
+        <h4>Product 2</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => data2.ProductId)
-
         <div class="form-group">
             @Html.LabelFor(model => data2.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -102,10 +96,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
+
 }
 
 @section Scripts {

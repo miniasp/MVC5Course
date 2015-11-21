@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -6,16 +6,11 @@ namespace MVC5Course.Models
 {
     public class ProductRepository : EFRepository<Product>, IProductRepository
     {
-        //­×§ï¨ú±o©Ò¦³¸ê®Æªº±ø¥ó
-        //§Q¥Îoverride ¯S©Ê¡Aª½±µ¶V¼g
-        //«h¥H¤U©Ò¦³¤èªk³£·|°Ñ¦Òall§@ªk
-        //³oÃä§@ªk¬O¥Ü½d¥u­n§ä¥X©Ò¦³active¬°trueªº¿ï¶µ
         public override IQueryable<Product> All()
         {
             return base.All().Where(p => p.Active == true);
         }
-        //¦A§Q¥Î¦h«¬ªº§@ªk¡A¦pªG¦³»İ¨D­n¬d¸ß¯u¥¿ªº¥ş³¡
-        //«ö°Ñ¼Æªºbool¡A¨M©w¬OÅã¥ÜbaseªºallÁÙ¬O¤W­±ªºthis.all
+
         public IQueryable<Product> All(bool isGetAll)
         {
             if (isGetAll)
@@ -28,34 +23,41 @@ namespace MVC5Course.Models
             }
         }
 
-        //ÂĞ¼gdelete¤èªk
-        public override void Delete(Product entity)
+        public IQueryable<Product> Getå–å¾—å‰é¢10ç­†ç¯„ä¾‹è³‡æ–™()
         {
-            ((FabricsEntities)this.UnitOfWork.Context).OrderLine.RemoveRange(entity.OrderLine);
-            base.Delete(entity);
+            return this.Getå–å¾—å‰é¢nç­†ç¯„ä¾‹è³‡æ–™(10, null);
         }
 
-        public IQueryable Get¨ú±o«e­±10µ§½d¨Ò¸ê®Æ()
+        public IQueryable<Product> Getå–å¾—å‰é¢10ç­†ç¯„ä¾‹è³‡æ–™(bool? active)
         {
-            return this.Get¨ú±o«e­±Nµ§½d¨Ò¸ê®Æ(10);
+            return this.Getå–å¾—å‰é¢nç­†ç¯„ä¾‹è³‡æ–™(10, active);
         }
 
-        public IQueryable Get¨ú±o«e­±Nµ§½d¨Ò¸ê®Æ(int N)
+        public IQueryable<Product> Getå–å¾—å‰é¢nç­†ç¯„ä¾‹è³‡æ–™(int n, bool? active)
         {
-            return this.All().OrderBy(p => p.ProductId).Take(N);
+            var data = base.All();
+
+            if (active.HasValue)
+            {
+                data = data.Where(p => p.Active.HasValue && p.Active.Value == active);
+            }
+
+            return data.OrderBy(p => p.ProductId).Take(n);
         }
 
-
-        public IQueryable Get¨ú±o¨Ì·j´M±ø¥ó¦W¦rªº¸ê®Æ(string search)
-        {
-            return this.All().Where(p => p.ProductName.Contains(search));
-        }
         public Product GetByID(int? id)
         {
             return this.All().FirstOrDefault(p => p.ProductId == id.Value);
         }
 
+        public override void Delete(Product product)
+        {
+            var db = ((FabricsEntities)this.UnitOfWork.Context);
 
+            db.OrderLine.RemoveRange(product.OrderLine);
+
+            base.Delete(product);
+        }
     }
 
     public interface IProductRepository : IRepository<Product>

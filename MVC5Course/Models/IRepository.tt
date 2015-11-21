@@ -139,7 +139,7 @@ namespace <#= code.VsNamespaceSuggestion() #>
 			ObjectSet.Add(entity);
 		}
 
-		public virtual void  Delete(T entity)
+		public virtual void Delete(T entity)
 		{
 			ObjectSet.Remove(entity);
 		}

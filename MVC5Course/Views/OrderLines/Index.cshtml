@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MVC5Course.Models.OrderLine>
+<h2>OrderLines</h2>
+@using (Html.BeginForm())
+{
+    @Html.DropDownList("orderSatsus", null, "請選擇訂單狀態", new { onchange = "this.form.submit();" })
+    <br>
+    @:ID： @Html.Id("id");<br/>
+    @:Name： @Html.Name("名稱");<br />
+    @:Value： @Html.Value("值");<br />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LineTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.OrderStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.ProductName)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LineTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.OrderStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </table>
+}

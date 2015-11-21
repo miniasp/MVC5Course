@@ -7,9 +7,34 @@
 <h2>Index</h2>
 
 <div>
+
     @ViewData["MyName"]
+    
+    <hr />
+
     @ViewBag.MyTitle
+
 </div>
+
+<hr />
+
+<table class="table">
+    <tr>
+        <td>ProductId</td>
+        <td>ProductName</td>
+        <td>Price</td>
+    </tr>
+    @foreach (var item in (List<MVC5Course.Models.Product>)ViewBag.Products)
+    {
+        <tr>
+            <td>@item.ProductId</td>
+            <td>@item.ProductName</td>
+            <td>@item.Price</td>
+        </tr>
+    }
+</table>
+
+<hr />
 
 <div>
     <h4>NewProductVM</h4>
@@ -33,28 +58,3 @@
 
     </dl>
 </div>
-<table class="table">
-    <tr>
-        <td>id</td>
-        <td>name</td>
-        <td>active</td>
-        <td>price</td>
-        <td>stock</td>
-    </tr>
-    @foreach (MVC5Course.Models.Product item in ViewBag.Products)
-    {
-        <tr>
-            <td>@item.ProductId</td>
-            <td>@item.ProductName</td>
-            <td>@item.Active</td>
-            <td>@item.Price</td>
-            <td>@item.Stock</td>
-
-        </tr>
-    }
-</table>
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

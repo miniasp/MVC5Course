@@ -1,0 +1,32 @@
+﻿@model int[]
+@{
+    Layout = "";
+    var s = " ";
+}
+
+@foreach (var item in Model)
+{
+    @item
+}
+
+@foreach (var item in Model)
+{
+    @item @s
+}
+
+<ul>
+@foreach (var item in Model)
+{
+  <li>@item</li>
+}
+</ul>
+
+
+@*@if (ViewBag.IsEnabled)
+{
+    <text>啟用</text>
+}
+else
+{
+    <text>停用</text>
+}*@

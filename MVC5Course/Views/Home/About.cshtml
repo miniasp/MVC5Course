@@ -1,13 +1,26 @@
 ﻿@{
     ViewBag.Title = "About";
-    var tt =  User.Identity.Name;
-    var controllerName = ViewContext.RouteData.Values["controller"];
-    
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
+@Utility.display啟用停用(ViewBag.IsEnabled)
 
-@UtilityHelper.showP()
+@Html.Raw(Utility.CommonBlock().ToHtmlString())
 
-@UtilityHelper.get回傳是否啟用(ViewBag.isActive)
+@section footer {
+&copy; @DateTime.Now.Year - Will 的 ASP.NET 應用程式 @@ @GetDate()
+}
+
+@functions {
+
+    public int MyID { get; set; }
+
+    public IHtmlString GetDate()
+    {
+        this.MyID = 1;
+        
+        return new HtmlString(DateTime.Now.ToString());
+    }
+    
+}
