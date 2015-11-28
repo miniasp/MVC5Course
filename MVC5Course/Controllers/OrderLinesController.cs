@@ -17,6 +17,8 @@ namespace MVC5Course.Controllers
         // GET: OrderLines
         public ActionResult Index(int productId, string orderSatsus)
         {
+            ViewBag.productId = productId;
+
             var orderLineList = from o in db.Order
                                 group o by o.OrderStatus into g
                                 select g.Key;
@@ -25,7 +27,7 @@ namespace MVC5Course.Controllers
             var orderLine = db.OrderLine.Where(p => p.ProductId == productId);
             if (!string.IsNullOrEmpty(orderSatsus))
             {
-                orderLine = db.OrderLine.Where(p => p.Order.OrderStatus == orderSatsus);
+                orderLine = orderLine.Where(p => p.Order.OrderStatus == orderSatsus);
             }
             return PartialView(orderLine.ToList());
         }

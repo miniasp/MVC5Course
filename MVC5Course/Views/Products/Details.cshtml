@@ -14,9 +14,10 @@
 
 @*@Html.Action("OrderLines", new { Model.ProductId })*@
 
+<div id="Details">
+    @Html.Action("Index", "OrderLines", new { productId = Model.ProductId })
+</div>
 
-
-@Html.Action("Index", "OrderLines", new { productId = Model.ProductId })
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
