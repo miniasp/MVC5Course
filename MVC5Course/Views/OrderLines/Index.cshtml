@@ -47,8 +47,20 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Ajax.ActionLink("Delete", "Delete",
+                    new
+                    {
+                        OrderId = item.OrderId,
+                        LineNumber = item.LineNumber,
+                        orderSatsus = ViewBag.OrderStatusSelected
+                    },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "Details",
+                        HttpMethod = "Post"
+                    })
                 </td>
+
             </tr>
         }
     </table>
