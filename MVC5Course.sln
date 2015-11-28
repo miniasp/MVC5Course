@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC5Course", "MVC5Course\MV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutSample", "LayoutSample\LayoutSample.csproj", "{FB7C9290-3FAF-4206-96C8-3EA07C6D44A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{B8D16639-F151-42F0-8B6D-6951A59A20D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FB7C9290-3FAF-4206-96C8-3EA07C6D44A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB7C9290-3FAF-4206-96C8-3EA07C6D44A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB7C9290-3FAF-4206-96C8-3EA07C6D44A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8D16639-F151-42F0-8B6D-6951A59A20D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8D16639-F151-42F0-8B6D-6951A59A20D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8D16639-F151-42F0-8B6D-6951A59A20D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8D16639-F151-42F0-8B6D-6951A59A20D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
