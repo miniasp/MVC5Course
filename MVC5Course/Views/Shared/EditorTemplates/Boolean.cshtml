@@ -1,0 +1,4 @@
+﻿@model bool?
+<label>@Html.RadioButton("", true, Model.HasValue ? Model.Value == true : true) 啟用</label>
+<label>@Html.RadioButton("", false, Model.HasValue ? Model.Value == false : false) 啟用</label>
+
