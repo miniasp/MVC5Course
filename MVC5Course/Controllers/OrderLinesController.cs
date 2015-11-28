@@ -30,7 +30,7 @@ namespace MVC5Course.Controllers
             {
                 orderLine = orderLine.Where(p => p.Order.OrderStatus == orderSatsus);
             }
-            return PartialView(orderLine.ToList());
+            return PartialView("Index",orderLine.ToList());
         }
 
         // GET: OrderLines/Details/5
@@ -122,21 +122,23 @@ namespace MVC5Course.Controllers
             db.OrderLine.Remove(ol);
             db.SaveChanges();
 
+            return Index(ol.ProductId, orderSatsus);
+
             //TODO 先笨一點，將Index中的方法拉進來
-            ViewBag.productId = ol.ProductId;
-            ViewBag.OrderStatusSelected = orderSatsus;
+            //ViewBag.productId = ol.ProductId;
+            //ViewBag.OrderStatusSelected = orderSatsus;
 
-            var orderLineList = from o in db.Order
-                                group o by o.OrderStatus into g
-                                select g.Key;
-            ViewBag.orderSatsus = new SelectList(orderLineList);
+            //var orderLineList = from o in db.Order
+            //                    group o by o.OrderStatus into g
+            //                    select g.Key;
+            //ViewBag.orderSatsus = new SelectList(orderLineList);
 
-            var orderLine = db.OrderLine.Where(p => p.ProductId == ol.ProductId);
-            if (!string.IsNullOrEmpty(orderSatsus))
-            {
-                orderLine = orderLine.Where(p => p.Order.OrderStatus == orderSatsus);
-            }
-            return PartialView("index",orderLine.ToList());
+            //var orderLine = db.OrderLine.Where(p => p.ProductId == ol.ProductId);
+            //if (!string.IsNullOrEmpty(orderSatsus))
+            //{
+            //    orderLine = orderLine.Where(p => p.Order.OrderStatus == orderSatsus);
+            //}
+            //return PartialView("index",orderLine.ToList());
 
 
             //return RedirectToAction("Index");

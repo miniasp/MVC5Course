@@ -6,6 +6,7 @@
     }
 }
 <h2>OrderLines</h2>
+<img src="~/Content/ajax-loader.gif" style="display:none;" id="loading" alt="" />
 @using (Ajax.BeginForm("Index", "OrderLines", new { productId = ViewBag.productId }, new AjaxOptions { UpdateTargetId = "Details" }))
 {
     @Html.DropDownList("orderSatsus", null, "請選擇訂單狀態", new { onchange = "$(this.form).trigger('submit');" })
@@ -57,6 +58,8 @@
                     new AjaxOptions
                     {
                         UpdateTargetId = "Details",
+                        LoadingElementId = "loading",
+                        Confirm = "您確定嗎??",
                         HttpMethod = "Post"
                     })
                 </td>

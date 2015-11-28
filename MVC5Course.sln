@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC5Course", "MVC5Course\MVC5Course.csproj", "{F05FD365-217D-40BA-B3E2-8FFA108254A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutSample", "LayoutSample\LayoutSample.csproj", "{FB7C9290-3FAF-4206-96C8-3EA07C6D44A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F05FD365-217D-40BA-B3E2-8FFA108254A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F05FD365-217D-40BA-B3E2-8FFA108254A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F05FD365-217D-40BA-B3E2-8FFA108254A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB7C9290-3FAF-4206-96C8-3EA07C6D44A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7C9290-3FAF-4206-96C8-3EA07C6D44A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7C9290-3FAF-4206-96C8-3EA07C6D44A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7C9290-3FAF-4206-96C8-3EA07C6D44A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
