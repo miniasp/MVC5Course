@@ -4,11 +4,29 @@
 使用工具
 --------
 
-* Visual Studio 2013 
-    * [Visual Studio 2013 Update 4](http://www.microsoft.com/zh-tw/download/details.aspx?id=44921)
-	* [Web Essentials 2013 for Update 4](http://vswebessentials.com/)
-* SQL Server 2012 Management Studio
-    * [CHT\x64\SQLManagementStudio_x64_CHT.exe](http://www.microsoft.com/zh-tw/download/details.aspx?id=29062)
+- [Visual Studio Community 2015](https://go.microsoft.com/fwlink/?LinkId=691978&clcid=0x404)
+  - 請更新到 [Visual Studio 2015 Update 1](https://www.visualstudio.com/zh-tw/news/vs2015-update1-vs.aspx)
+  - 若安裝英文版的人，也可以額外安裝 [Visual Studio 2015 語言套件 - 繁體中文](https://www.microsoft.com/zh-tw/download/details.aspx?id=48157)。
+  - 建議安裝的 Visual Studio 擴充套件
+    - [Web Essentials 2015](http://vswebessentials.com/)
+    - [tangible T4 Editor 2.3.0 plus modeling tools for VS 2015](https://visualstudiogallery.msdn.microsoft.com/784cf592-b797-4d4d-ad33-331fcf63faad)
+- [Visual Studio Community 2013](http://go.microsoft.com/fwlink/?LinkId=532495&clcid=0x409)
+  - 請更新到 [Visual Studio 2013 Update 5](https://www.visualstudio.com/news/vs2013-update5-vs)
+  - 若安裝英文版的人，也可以額外安裝 [Visual Studio 2013 語言套件 - 繁體中文](http://go.microsoft.com/fwlink/?LinkID=320680&clcid=0x404)。
+  - 建議安裝的 Visual Studio 擴充套件
+    - [Web Essentials 2013](http://vswebessentials.com/)
+    - [VSCommands for Visual Studio 2013](http://vscommands.squaredinfinity.com/features)
+    - [tangible T4 Editor 2.3.0 plus modeling tools for VS 2013](https://visualstudiogallery.msdn.microsoft.com/6d1223ca-5e52-49d0-a489-910f9b76396e)
+- [SQL Server Management Studio](https://msdn.microsoft.com/zh-tw/library/mt238290.aspx)
+    - [安裝 SQL Server Management Studio 2014 SP1](http://download.microsoft.com/download/1/5/6/156992E6-F7C7-4E55-833D-249BD2348138/ENU/x86/SQLManagementStudio_x86_ENU.exe)
+    - [下載 SQL Server Management Studio 2016 年 1 月預覽版](http://go.microsoft.com/fwlink/?LinkID=724126)
+- [SQL Server Data Tools](https://msdn.microsoft.com/zh-tw/library/mt204009.aspx)
+    - [Visual Studio 2015 的 SQL Server Data Tools](http://go.microsoft.com/fwlink/?LinkID=619253)
+    - [Visual Studio 2013 的 SQL Server Data Tools](https://msdn.microsoft.com/dn864412)
+
+關於 LocalDB
+------------
+  
 * SQL Server 2012 LocalDB (SQL Server 11.0.3000)
 	* 伺服器名稱: **``(localdb)\v11.0``**
 	*  [SQL Server 2012 Express LocalDB (SqlLocalDB) 深入剖析](http://blog.miniasp.com/post/2012/09/03/SQL-Server-2012-Express-LocalDB-Quick-Start.aspx)
@@ -39,23 +57,23 @@
 專案 NuGet 套件介紹
 -------------------
 
-以下是 Visual Studio 2013 Update 4 內建的 ASP.NET MVC 5 專案範本專案的 NuGet 套件介紹。
+以下是 Visual Studio 2013 Update 5 內建的 ASP.NET MVC 5 專案範本專案的 NuGet 套件介紹。
 
 ### [ 後端套件 ]
 
-* ASP.NET MVC 5.2.2
+* ASP.NET MVC 5.2.3
   - 官網: http://www.asp.net/mvc
   - 專案位址: http://aspnetwebstack.codeplex.com/
   - 範例專案: http://aspnet.codeplex.com/SourceControl/latest
-* ASP.NET Web API 5.2.2
+* ASP.NET Web API 5.2.3
   - 官網: http://www.asp.net/web-api
   - 專案位址: http://aspnetwebstack.codeplex.com/
   - 範例專案: http://aspnet.codeplex.com/SourceControl/latest
-* ASP.NET Identity 2.1.0
+* ASP.NET Identity 2.2.1
   - 官網: http://www.asp.net/identity
   - 專案位址: https://aspnetidentity.codeplex.com/
   - 範例專案: http://aspnet.codeplex.com/SourceControl/latest
-* Entity Framework 6.1.1
+* Entity Framework 6.1.3
   - 官網: http://www.asp.net/entity-framework
   - 專案位址: https://entityframework.codeplex.com/
 * Microsoft.AspNet.Web.Optimization 1.1.3
@@ -111,7 +129,7 @@
 * jQuery Validation 1.11.1
 	* 官網: http://jqueryvalidation.org/
 	* 專案位址: https://github.com/jzaefferer/jquery-validation 
-* Microsoft.jQuery.Unobtrusive.Validation 3.2.2
+* Microsoft.jQuery.Unobtrusive.Validation 3.2.3
 	* 用來與 ASP.NET MVC 5 表單驗證功能搭配使用的 JS 函式庫
 	* 套件位址: https://www.nuget.org/packages/Microsoft.jQuery.Unobtrusive.Validation/
 	* 版本說明: http://go.microsoft.com/fwlink/?LinkId=389866  
