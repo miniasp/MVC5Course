@@ -1,0 +1,2 @@
+﻿@model Decimal?
+@Html.TextBox("", Model.HasValue ? Model.Value : 0, "{0:N2}", new { @class = "form-control" })

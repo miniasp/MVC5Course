@@ -1,0 +1,12 @@
+﻿@model MVC5Course.Models.Product
+@{
+    ViewBag.Title = "Edit";
+}
+<h2>Edit</h2>
+@Html.EditorForModel()
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

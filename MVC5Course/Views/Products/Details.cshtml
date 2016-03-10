@@ -1,0 +1,27 @@
+﻿@model MVC5Course.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@Html.DisplayForModel();
+
+<hr />
+
+@*@Html.Partial("OrderLines", Model.OrderLine)*@
+
+@*@Html.Action("OrderLines", new { Model.ProductId })*@
+
+<div id="Details">
+    @Html.Action("Index", "OrderLines", new { productId = Model.ProductId })
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

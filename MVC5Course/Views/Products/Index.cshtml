@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@helper HtmlActionLink(string action) 
+{
+    <a href="@Url.Action(action)"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a>
+}
+
+<h2>Index</h2>
+
+<p class="pull-right">
+    @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-default", data_test="123" })
+</p>
+
+@using (Html.BeginForm(
+    ViewContext.RouteData.Values["action"].ToString(),
+    ViewContext.RouteData.Values["controller"].ToString(), 
+    FormMethod.Get))
+{
+    @*@:Active:
+    <select name="active">
+        <option>N/A</option>
+        <option value="True" selected="@(ViewBag.IsActive == true)">上架</option>
+        <option value="False" selected="@(ViewBag.IsActive == false)">下架</option>
+    </select>*@
+    
+    
+    @:依據產品名稱篩選:
+    @Html.DropDownList("ProductName", null, "請選擇", new { onchange="this.form.submit();" })
+    
+    
+    <input type="search" name="search" value="" accesskey="s" placeholder="請輸入關鍵字 (Alt+S)" />
+    <input type="submit" value="搜尋" />
+}
+
+<br />
+
+@using (Html.BeginForm())
+{
+<div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+</div>
+<table class="table">
+    <tr>
+        <th class="text-center">
+            批次<br />刪除
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th></th>
+    </tr>
+@{
+    var data = Model.ToArray();
+}
+@for (var i = 0; i < data.Length; i++)
+{
+    <tr>
+        <td class="text-center">
+            <input type="checkbox" name="ProductId" value="@data[i].ProductId" />
+        </td>
+        <td>
+            @Html.HiddenFor(modelItem => data[i].ProductId)
+            @Html.EditorFor(modelItem => data[i].ProductName)
+        </td>
+        <td>
+            @Html.EditorFor(modelItem => data[i].Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => data[i].Active)
+        </td>
+        <td>
+            @Html.EditorFor(modelItem => data[i].Stock)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=data[i].ProductId }) |
+            @Html.ActionLink("Details", "Details", new { id=data[i].ProductId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=data[i].ProductId })
+        </td>
+    </tr>
+}
+    <tr>
+        <td class="text-center">
+            <button type="submit">批次作業</button>
+        </td>
+        <td></td>
+        <td>
+            <a href="@Url.Action("BatchUpdate")" class="btn btn-default">
+                更新價格為 5 元
+            </a>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+
+}
