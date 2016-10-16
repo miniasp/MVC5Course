@@ -11,6 +11,7 @@ namespace MVC5Course.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Client
@@ -23,14 +24,18 @@ namespace MVC5Course.Models
         [Required]
         public int ClientId { get; set; }
         [Required]
-        [StringLength(10, ErrorMessage = "FirstName is't length over 10")]
+        [StringLength(10, ErrorMessage = "{0} is't length over {1}")]
+        [DisplayName("Modify1 Display Name")]
         public string FirstName { get; set; }
         [Required]
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         [RegularExpression("[MF]",ErrorMessage ="only enter M or F")]
         public string Gender { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+        [Range(1,9, ErrorMessage ="{0}_{1} to {2}")]
         public Nullable<double> CreditRating { get; set; }
         public string XCode { get; set; }
         public Nullable<int> OccupationId { get; set; }

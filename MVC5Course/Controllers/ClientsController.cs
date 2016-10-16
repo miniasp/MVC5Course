@@ -15,9 +15,16 @@ namespace MVC5Course.Controllers
         private FabricsEntities db = new FabricsEntities();
 
         // GET: Clients
-        public ActionResult Index()
+        public ActionResult Index(string serach)
         {
             var client = db.Client.Include(c => c.Occupation);
+                
+
+            if(!string.IsNullOrEmpty(serach))
+            {
+                client = client.Where(c => c.FirstName.Contains(serach));
+            }
+
             return View(client.ToList());
         }
 
@@ -127,6 +134,16 @@ namespace MVC5Course.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(MVC5Course.Models.VeiwModesl.LoginVeiwModel client)
+        {
+            return View("LoginResult", client);
         }
     }
 }
