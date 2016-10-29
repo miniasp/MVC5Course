@@ -7,7 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create") | 
+    @Html.ActionLink("Add 20% Price", "AddPrice")
 </p>
 <table class="table">
     <tr>
@@ -33,6 +34,7 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ProductName)
+            @Html.ActionLink("!!!","Update",new { id = item.ProductId})
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
@@ -55,5 +57,3 @@
 }
 
 </table>
-
-@Html.Action("Create")

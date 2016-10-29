@@ -175,6 +175,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\EFController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -184,6 +185,14 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Client.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EFGeneratePartialClass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fabrics.Context.cs">
       <AutoGen>True</AutoGen>
@@ -205,14 +214,38 @@
     <Compile Include="Models\Occupation.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Occupation.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Order.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderLine.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrderLine.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetClientContribution_Result.cs">
+      <DependentUpon>Fabrics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetClientContribution_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ClientContribution.cs">
+      <DependentUpon>Fabrics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ClientContribution.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -225,6 +258,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\EFGeneratePartialClass.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EFGeneratePartialClass.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Fabrics.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Fabrics.edmx</DependentUpon>
@@ -305,6 +342,11 @@
     <Content Include="Views\Clients\Index.cshtml" />
     <Content Include="Views\Clients\Login.cshtml" />
     <Content Include="Views\Clients\LoginResult.cshtml" />
+    <Content Include="Views\EF\Details.cshtml" />
+    <Content Include="Views\EF\Index.cshtml" />
+    <Content Include="Views\EF\ClientContribution.cshtml" />
+    <Content Include="Views\EF\ClientContribution2.cshtml" />
+    <Content Include="Views\EF\usp_GetClientContribution_Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
