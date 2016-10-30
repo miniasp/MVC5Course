@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC5Course.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,7 +7,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVC5Course.Models;
 
 namespace MVC5Course.Controllers
 {
@@ -18,9 +18,8 @@ namespace MVC5Course.Controllers
         public ActionResult Index(string serach)
         {
             var client = db.Client.Include(c => c.Occupation);
-                
 
-            if(!string.IsNullOrEmpty(serach))
+            if (!string.IsNullOrEmpty(serach))
             {
                 client = client.Where(c => c.FirstName.Contains(serach));
             }
@@ -89,9 +88,15 @@ namespace MVC5Course.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,FirstName,MiddleName,LastName,Gender,DateOfBirth,CreditRating,XCode,OccupationId,TelephoneNumber,Street1,Street2,City,ZipCode,Longitude,Latitude,Notes")] Client client)
+        public ActionResult Edit(int id, FormCollection formCollection)
         {
-            if (ModelState.IsValid)
+            var client = db.Client.Find(id);
+
+            if (TryUpdateModel(
+                client,
+                prefix: null,
+                includeProperties: null,
+                excludeProperties: new[] { "isAdmin" }))
             {
                 db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
@@ -140,6 +145,7 @@ namespace MVC5Course.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(MVC5Course.Models.VeiwModesl.LoginVeiwModel client)
         {

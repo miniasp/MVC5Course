@@ -1,0 +1,30 @@
+﻿@{
+    this.Layout = null;
+}
+
+@*@DateTime.Now
+
+    @{
+        var name = "Test";
+        var message = string.Format("HI, My name is {0}", name);
+    }*@
+@{
+    int[] data = new int[] { 1, 2, 3, 4, 5 };
+}
+
+@foreach (var item in data)
+{
+    @item
+}
+
+@foreach (var item in data)
+{
+    @(@item + " ")
+}
+
+<ul>
+    @foreach (var item in data)
+    {
+        <li>@item</li>
+    }
+</ul>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MVC5Course.Models.Product>
+
+@{
+    ViewBag.Title = "PeoductList";
+
+    var items = Model.ToArray();
+}
+
+<h2>PeoductList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("BacthUpdateProduct", "MB"))
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isDeleted)
+            </th>
+            <th></th>
+        </tr>
+
+        @for (var i = 0; i < items.LongLength; i++)
+        {
+            <tr>
+                @Html.HiddenFor(modelItem => items[i].ProductId)
+                <td>
+                    @Html.EditorFor(modelItem => items[i].ProductName)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => items[i].Price)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => items[i].Active)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => items[i].Stock)
+                </td>
+            </tr>
+        }
+
+        @*@foreach (var item in Model)
+            {
+                <tr>
+                    @Html.HiddenFor(modelItem => item.ProductName)
+                    <td>
+                        @Html.EditorFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.EditorFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.EditorFor(modelItem => item.Active)
+                    </td>
+                    <td>
+                        @Html.EditorFor(modelItem => item.Stock)
+                    </td>
+                </tr>
+            }*@
+    </table>
+
+    <input type="submit" name="" value="批次更新" />
+}

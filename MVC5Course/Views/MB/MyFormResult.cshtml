@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "MyFormResult";
+}
+
+<h2>MyFormResult</h2>
+@using MVC5Course.Models.VeiwModesl
+@{
+    var c = TempData["MyFormData"] as LoginVeiwModel;
+    if (c != null)
+    {
+        <h3>@c.FirstName @c.LastName 新增資料成功！</h3>
+
+    }
+
+    if (TempData["MyFormData"] != null)
+    {
+        TempData["MyFormData"] = 123;
+
+        TempData["MyFormData2"] = 888;
+        //TempData.Keep();
+    }
+
+    <h3>@TempData["MyFormData"]</h3>
+
+    <h3>@TempData["MyFormData2"]</h3>
+}
