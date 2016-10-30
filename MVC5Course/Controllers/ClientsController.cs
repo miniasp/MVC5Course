@@ -15,14 +15,19 @@ namespace MVC5Course.Controllers
         private FabricsEntities db = new FabricsEntities();
 
         // GET: Clients
-        public ActionResult Index(string serach)
+        public ActionResult Index(string search, int? CreditRating, string Gender)
         {
             var client = db.Client.Include(c => c.Occupation);
 
-            if (!string.IsNullOrEmpty(serach))
+            if (!string.IsNullOrEmpty(search))
             {
-                client = client.Where(c => c.FirstName.Contains(serach));
+                client = client.Where(c => c.FirstName.Contains(search));
             }
+
+            var options = (from p in db.Client select p.CreditRating).Distinct().OrderBy(p => p).ToList();
+            ViewBag.CreditRating = new SelectList(options);
+            
+            ViewBag.Gender = new SelectList(new string[] { "M", "F" });
 
             return View(client.ToList());
         }

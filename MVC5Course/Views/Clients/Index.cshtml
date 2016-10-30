@@ -10,7 +10,10 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <form action="">
-    <input name="serach" type="text" />
+    @*<input name="serach" type="text" />*@
+        @Html.TextBox("search")
+        @Html.DropDownList("CreditRating", "--請選擇評價--")
+        @Html.DropDownList("Gender", "--請選擇性別--")
     <input type="submit" value="serach" />
 </form>
 <table class="table">
